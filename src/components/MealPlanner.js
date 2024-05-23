@@ -76,7 +76,7 @@ const MealPlanner = () => {
             <button onClick={randomizeMeals}>Randomize Meal Plan</button>
             <ul>
                 {meals.map((meal, index) => (
-                    <li key={index}>{weekDates[index]}: {meal}</li>
+                    <li key={index}>{weekDates[index]}: <br/> {meal}</li>
                 ))}
             </ul>
         </div>
