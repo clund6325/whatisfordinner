@@ -107,23 +107,29 @@ const MealPlanner = () => {
 
     return (
         <div className='Main-content'>
-            <div className='WorkCalendar'>
-                <WorkCalendar setWorkDays={setWorkDays} />
-            </div>
-            <div className='RecipeForm'>
-                <RecipeForm addRecipe={addRecipe} />
+            <div className='Content-row'>
+                <div className='Content-column'>
+                    <div className='WorkCalendar'>
+                        <WorkCalendar setWorkDays={setWorkDays} />
+                    </div>
+                </div>
+                <div className='Content-column'>
+                    <div className='RecipeForm'>
+                        <RecipeForm addRecipe={addRecipe} />
+                    </div>
+                </div>
             </div>
             <button onClick={randomizeMeals}>Randomize Meal Plan</button>
             <ul>
                 {meals.map((meal, index) => (
-                    <li key={index}>{weekDates[index]}: <br/> {meal}
+                    <li key={index}>{weekDates[index]}: {meal} 
                         <label>
                             <input 
                                 type='checkbox'
                                 checked={fastFoodSelection[index]}
                                 onChange={() => toggleFastFood(index)}
                             />
-                            Fast Food?
+                            Fast Food
                         </label>
                     </li>
                 ))}
