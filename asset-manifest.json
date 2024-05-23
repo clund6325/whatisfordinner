@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/whatisfordinner/static/css/main.06bb308a.css",
+    "main.js": "/whatisfordinner/static/js/main.fe4de7f7.js",
+    "static/js/453.ddfeb23b.chunk.js": "/whatisfordinner/static/js/453.ddfeb23b.chunk.js",
+    "static/media/logo.png": "/whatisfordinner/static/media/logo.ae0addd5e24a72f3af5c.png",
+    "index.html": "/whatisfordinner/index.html",
+    "main.06bb308a.css.map": "/whatisfordinner/static/css/main.06bb308a.css.map",
+    "main.fe4de7f7.js.map": "/whatisfordinner/static/js/main.fe4de7f7.js.map",
+    "453.ddfeb23b.chunk.js.map": "/whatisfordinner/static/js/453.ddfeb23b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.06bb308a.css",
+    "static/js/main.fe4de7f7.js"
+  ]
+}
