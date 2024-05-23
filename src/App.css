@@ -1,38 +1,112 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+}
+
 .App {
+  width: 100%;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #ff6f61;
+  padding: 20px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.App-logo {
+  height: 50px;
+  margin-right: 20px;
+}
+
+h1 {
+  font-size: 32px;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.Main-content {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.WorkCalendar {
+  margin-bottom: 30px;
+}
+
+h2 {
+  color: #333;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.RecipeForm{
+  margin-bottom: 30px;
+}
+
+.RecipeForm form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.RecipeForm input, .RecipeForm select {
+  margin: 10px 0;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 400px;
+  font-size: 16px;
+}
+
+.RecipeForm button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #ff6f61;
   color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
-.App-link {
-  color: #61dafb;
+.RecipeForm button:hover {
+  background-color: #e65c55;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #ff6f61;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #e65c55;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  background: #ffffff;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
