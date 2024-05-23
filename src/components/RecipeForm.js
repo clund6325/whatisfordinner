@@ -39,8 +39,8 @@ const RecipeForm = ({ addRecipe }) => {
         <div>
             <h2>Add Recipe</h2>
             <form onSubmit={handleSubmit}>
-                <select onChange={handleSelectChange}>
-                    <option value="">Select a recipe</option>
+                <select >
+                    <option value="">View Recipes</option>
                     {sortedRecipes.map((recipe, index) => (
                         <option key={index} value={recipe.name}>{recipe.name}, {recipe.difficulty}</option>
                     ))}
