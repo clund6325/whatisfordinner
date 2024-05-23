@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const RecipeForm = ({ addRecipe }) => {
+const RecipeForm = ({ addRecipe, recipes }) => {
     const [name, setName] = useState('');
     const [difficulty, setDifficulty] = useState(1);
     const [storedRecipes, setStoredRecipes] = useState([]);
@@ -16,6 +16,11 @@ const RecipeForm = ({ addRecipe }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const duplicateRecipe = storedRecipes.some(recipe => recipe.name.toLowerCase() === name.toLocaleLowerCase());
+        if (duplicateRecipe) {
+            alert('Recipe with this name already exists');
+            return;
+        }
         const newRecipe = { name, difficulty: parseInt(difficulty) };
         addRecipe(newRecipe);
         const updatedRecipes = [...storedRecipes, newRecipe];
@@ -39,7 +44,7 @@ const RecipeForm = ({ addRecipe }) => {
         <div>
             <h2>Add Recipe</h2>
             <form onSubmit={handleSubmit}>
-                <select >
+                <select onChange={handleSelectChange}>
                     <option value="">View Recipes</option>
                     {sortedRecipes.map((recipe, index) => (
                         <option key={index} value={recipe.name}>{recipe.name}, {recipe.difficulty}</option>

@@ -115,7 +115,7 @@ const MealPlanner = () => {
                 </div>
                 <div className='Content-column'>
                     <div className='RecipeForm'>
-                        <RecipeForm addRecipe={addRecipe} />
+                        <RecipeForm addRecipe={addRecipe} recipes={recipes} />
                     </div>
                 </div>
             </div>
