@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const RecipeForm = ({ addRecipe, recipes }) => {
+const RecipeForm = ({ addRecipe, deleteRecipe, recipes }) => {
     const [name, setName] = useState('');
     const [difficulty, setDifficulty] = useState(1);
     const [storedRecipes, setStoredRecipes] = useState([]);
@@ -12,11 +12,11 @@ const RecipeForm = ({ addRecipe, recipes }) => {
         } else {
             setStoredRecipes([]);
         }
-    }, []);
+    }, [recipes]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const duplicateRecipe = storedRecipes.some(recipe => recipe.name.toLowerCase() === name.toLocaleLowerCase());
+        const duplicateRecipe = storedRecipes.some(recipe => recipe.name.toLowerCase() === name.toLowerCase());
         if (duplicateRecipe) {
             alert('Recipe with this name already exists');
             return;
@@ -26,6 +26,16 @@ const RecipeForm = ({ addRecipe, recipes }) => {
         const updatedRecipes = [...storedRecipes, newRecipe];
         setStoredRecipes(updatedRecipes);
         localStorage.setItem('recipes', JSON.stringify(updatedRecipes));
+        setName('');
+        setDifficulty(1);
+    };
+
+    const handleDelete = () => {
+        if (!name) {
+            alert('Select a recipe to delete');
+            return;
+        }
+        deleteRecipe(name);
         setName('');
         setDifficulty(1);
     };
@@ -68,6 +78,7 @@ const RecipeForm = ({ addRecipe, recipes }) => {
                 />
                 <button type="submit">Add Recipe</button>
             </form>
+            <button onClick={handleDelete}>Delete Recipe</button>
         </div>
     );
 };

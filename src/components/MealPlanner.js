@@ -44,6 +44,12 @@ const MealPlanner = () => {
         localStorage.setItem('recipes', JSON.stringify(updatedRecipes));
     };
 
+    const deleteRecipe = (recipeName) => {
+        const updatedRecipes = recipes.filter(recipe => recipe.name !== recipeName);
+        setRecipes(updatedRecipes);
+        localStorage.setItem('recipes', JSON.stringify(updatedRecipes));
+    };
+
     const toggleFastFood = (index) => {
         const updatedSelections = [...fastFoodSelection];
         updatedSelections[index] = !updatedSelections[index];
@@ -115,7 +121,7 @@ const MealPlanner = () => {
                 </div>
                 <div className='Content-column'>
                     <div className='RecipeForm'>
-                        <RecipeForm addRecipe={addRecipe} recipes={recipes} />
+                        <RecipeForm addRecipe={addRecipe} deleteRecipe={deleteRecipe} recipes={recipes} />
                     </div>
                 </div>
             </div>
