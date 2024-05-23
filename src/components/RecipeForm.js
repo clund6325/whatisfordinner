@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-const RecipeForm = ({ addRecipe, deleteRecipe, recipes }) => {
+const RecipeForm = ({ addRecipe, deleteRecipe, editRecipe, recipes }) => {
     const [name, setName] = useState('');
     const [difficulty, setDifficulty] = useState(1);
     const [storedRecipes, setStoredRecipes] = useState([]);
+    const [isEditing, setIsEditing] = useState(false);
+    const [originalName, setOriginalName] = useState('');
 
     useEffect(() => {
         const savedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
@@ -16,18 +18,24 @@ const RecipeForm = ({ addRecipe, deleteRecipe, recipes }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const duplicateRecipe = storedRecipes.some(recipe => recipe.name.toLowerCase() === name.toLowerCase());
-        if (duplicateRecipe) {
-            alert('Recipe with this name already exists');
-            return;
+        if (isEditing) {
+            editRecipe(originalName, name, difficulty);
+            setIsEditing(false);
+        } else {
+            const duplicateRecipe = storedRecipes.some(recipe => recipe.name.toLowerCase() === name.toLowerCase());
+            if (duplicateRecipe) {
+                alert('Recipe with this name already exists');
+                return;
+            }
+            const newRecipe = { name, difficulty: parseInt(difficulty) };
+            addRecipe(newRecipe);
+            // const updatedRecipes = [...storedRecipes, newRecipe];
+            // setStoredRecipes(updatedRecipes);
+            // localStorage.setItem('recipes', JSON.stringify(updatedRecipes));
         }
-        const newRecipe = { name, difficulty: parseInt(difficulty) };
-        addRecipe(newRecipe);
-        const updatedRecipes = [...storedRecipes, newRecipe];
-        setStoredRecipes(updatedRecipes);
-        localStorage.setItem('recipes', JSON.stringify(updatedRecipes));
         setName('');
         setDifficulty(1);
+        setOriginalName('');
     };
 
     const handleDelete = () => {
@@ -38,6 +46,8 @@ const RecipeForm = ({ addRecipe, deleteRecipe, recipes }) => {
         deleteRecipe(name);
         setName('');
         setDifficulty(1);
+        setIsEditing(false);
+        setOriginalName('');
     };
 
     const handleSelectChange = (e) => {
@@ -45,6 +55,13 @@ const RecipeForm = ({ addRecipe, deleteRecipe, recipes }) => {
         if (selectedRecipe) {
             setName(selectedRecipe.name);
             setDifficulty(selectedRecipe.difficulty);
+            setIsEditing(true);
+            setOriginalName(selectedRecipe.name);
+        } else {
+            setName('');
+            setDifficulty(1);
+            setIsEditing(false);
+            setOriginalName('');
         }
     };
 
@@ -52,10 +69,10 @@ const RecipeForm = ({ addRecipe, deleteRecipe, recipes }) => {
 
     return (
         <div>
-            <h2>Add Recipe</h2>
+            <h2>{isEditing ? 'Edit Recipe' : 'Add Recipe'}</h2>
             <form onSubmit={handleSubmit}>
                 <select onChange={handleSelectChange}>
-                    <option value="">View Recipes</option>
+                    <option value="">Select a Recipe</option>
                     {sortedRecipes.map((recipe, index) => (
                         <option key={index} value={recipe.name}>{recipe.name}, {recipe.difficulty}</option>
                     ))}
@@ -76,7 +93,7 @@ const RecipeForm = ({ addRecipe, deleteRecipe, recipes }) => {
                 onChange={(e) => setDifficulty(e.target.value)}
                 required
                 />
-                <button type="submit">Add Recipe</button>
+                <button type="submit">{isEditing ? 'Save Changes' : 'Add Recipe'}</button>
             </form>
             <button onClick={handleDelete}>Delete Recipe</button>
         </div>
