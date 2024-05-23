@@ -1,6 +1,6 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f4f9;
+  background-color: #e0f7fa;
   margin: 0;
   padding: 0;
 }
@@ -11,7 +11,7 @@ body {
 }
 
 .App-header {
-  background-color: #ff6f61;
+  background-color: #4fc3f7;
   padding: 20px;
   color: white;
   display: flex;
@@ -80,7 +80,7 @@ h2 {
 .RecipeForm button {
   margin-top: 5px;
   padding: 10px 20px;
-  background-color: #ff6f61;
+  background-color: #4fc3f7;
   color: white;
   border: none;
   border-radius: 5px;
@@ -89,13 +89,48 @@ h2 {
 }
 
 .RecipeForm button:hover {
-  background-color: #e65c55;
+  background-color: #42a5f5;
+}
+
+.FastFoodForm{
+  margin-bottom: 30px;
+}
+
+.FastFoodForm form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.FastFoodForm input, .FastFoodForm select {
+  margin: 5px 0;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
+  font-size: 16px;
+}
+
+.FastFoodForm button {
+  margin-top: 5px;
+  padding: 10px 20px;
+  background-color: #4fc3f7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.FastFoodForm button:hover {
+  background-color: #42a5f5;
 }
 
 button {
   margin-top: -10px;
   padding: 10px 20px;
-  background-color: #ff6f61;
+  background-color: #4fc3f7;
   color: white;
   border: none;
   border-radius: 5px;
@@ -104,7 +139,7 @@ button {
 }
 
 button:hover {
-  background-color: #e65c55;
+  background-color: #42a5f5;
 }
 
 ul {

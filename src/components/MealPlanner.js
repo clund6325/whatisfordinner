@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import RecipeForm from './RecipeForm';
+import FastFoodForm from './FastFoodForm';
 import WorkCalendar from './WorkCalendar';
 import moment from 'moment';
 
@@ -8,8 +9,7 @@ const MealPlanner = () => {
     const [workDays, setWorkDays] = useState(Array(7).fill(false));
     const [meals, setMeals] = useState(Array(7).fill(''));
     const [fastFoodSelection, setFastFoodSelection] = useState(Array(7).fill(false));
-
-    const fastFoodOptions = [
+    const [fastFoodOptions, setFastFoodOptions] = useState([
         { name: 'McDonalds', difficulty: 1 },
         { name: 'Burger King', difficulty: 1 },
         { name: 'Wendys', difficulty: 1 },
@@ -24,9 +24,6 @@ const MealPlanner = () => {
         { name: 'Little Caesars', difficulty: 1 },
         { name: 'Chipotle', difficulty: 1 },
         { name: 'Panera Bread', difficulty: 1 },
-        { name: 'Starbucks', difficulty: 1 },
-        { name: 'Dunkin', difficulty: 1 },
-        { name: 'Krispy Kreme', difficulty: 1 },
         { name: 'Dairy Queen', difficulty: 1 },
         { name: 'Sonic', difficulty: 1 },
         { name: 'Arbys', difficulty: 1 },
@@ -36,7 +33,7 @@ const MealPlanner = () => {
         { name: 'Five Guys', difficulty: 1 },
         { name: 'Shake Shack', difficulty: 1 },
         { name: 'Panda Express', difficulty: 1 }
-    ];
+    ]);
 
     const addRecipe = (recipe) => {
         const updatedRecipes = [...recipes, recipe];
@@ -54,6 +51,12 @@ const MealPlanner = () => {
         const updatedRecipes = recipes.map(recipe => recipe.name === oldName ? {...recipe, name: newName, difficulty: newDifficulty} : recipe);
         setRecipes(updatedRecipes);
         localStorage.setItem('recipes', JSON.stringify(updatedRecipes));
+    };
+
+    const addFastFoodOption = (fastFood) => {
+        const updatedFastFoodOptions = [...fastFoodOptions, fastFood];
+        setFastFoodOptions(updatedFastFoodOptions);
+        localStorage.setItem('fastFoodOptions', JSON.stringify(updatedFastFoodOptions));
     };
 
     const toggleFastFood = (index) => {
@@ -113,6 +116,11 @@ const MealPlanner = () => {
         if (Array.isArray(savedRecipes)){ 
             setRecipes(savedRecipes);
         }
+
+        const savedFastFoodOptions = JSON.parse(localStorage.getItem('fastFoodOptions')) || [];
+        if (Array.isArray(savedFastFoodOptions) && savedFastFoodOptions.length > 0) {
+            setFastFoodOptions(savedFastFoodOptions);
+        }
     }, []);
     
     const weekDates = getWeekDates();
@@ -128,6 +136,11 @@ const MealPlanner = () => {
                 <div className='Content-column'>
                     <div className='RecipeForm'>
                         <RecipeForm addRecipe={addRecipe} deleteRecipe={deleteRecipe} editRecipe={editRecipe} recipes={recipes} />
+                    </div>
+                </div>
+                <div className='Content-column'>
+                    <div className='FastFoodForm'>
+                        <FastFoodForm addFastFoodOption={addFastFoodOption} />
                     </div>
                 </div>
             </div>
