@@ -8,7 +8,6 @@ function App() {
     <div className="App">
       <header className='App-header'>
         <img src={logo} alt='logo' className='App-logo' />
-        <h1>What's for Dinner?!</h1>
       </header>
       <MealPlanner />
     </div>

@@ -12,7 +12,6 @@ body {
 
 .App-header {
   background-color: #4fc3f7;
-  padding: 20px;
   color: white;
   display: flex;
   align-items: center;
@@ -20,8 +19,7 @@ body {
 }
 
 .App-logo {
-  height: 50px;
-  margin-right: 20px;
+  height: 150px;
 }
 
 h1 {
